@@ -41,6 +41,32 @@ DeKalb, IL 60115<br>
       </header>
       <section>
         
+<h3>
+<a id="Code Examples" class="anchor" href="#code-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code Examples</h3>
+
+<p>Using Unidata's pyUDL module, I wrote a script to download national radar composites and generate a hovmoller diagram for a recent time period 
+   that can be modified by the user. Uses numpy and matplot lib.  A possible alternative for those who don't have <a href="http://scitools.org.uk/iris/docs/v1.2/examples/graphics/hovmoller.html">IRIS</a>.
+</p>
+
+<p>
+<a href="http://nbviewer.ipython.org/github/ahaberlie/hovmoller/blob/master/pyUDL-Hovmoller.ipynb">Radar Hovmoller with pyUDL and numpy</a>
+</p>
+
+<p>Using SPC's tornado dataset, I wrote a script to generate a hovmoller diagram using tornado touchdown locations.  The output is a neat way to visualize
+   tornado occurrence in the United States for every hour of the day.  Uses numpy, matplotlib, and pandas.
+</p>
+ 
+<p> 
+<a href="http://nbviewer.ipython.org/github/ahaberlie/hovmoller/blob/master/tor_hovmoller.ipynb">Tornado touchdown Hovmoller with pandas and numpy</a>
+</p>
+
+<p>Noticed that by default, pixels of low or noise values in radar images (and other sparse datasets) displayed over top of images or lines on basemap.
+   I created this example to show an application of setting low values to none.. looks better than just having the lowest colormap value overlayed
+</p>
+ 
+<p> 
+<a href="http://nbviewer.ipython.org/github/ahaberlie/visualization_examples/blob/master/Transparent_pixels.ipynb">Transparent Pixels with Basemap, Shapefile, pyUDL</a>
+</p>
 
 <h3>
 <a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Education</h3>
@@ -256,33 +282,6 @@ Wisconsin – Platteville Computer Science and Software Engineering Technical Re
 (March 2014)</p>
 
 <p>Housing Department Research – University of Wisconsin – Platteville - Housing Department (August 2009)</p>
-
-<h3>
-<a id="Code Examples" class="anchor" href="#code-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code Examples</h3>
-
-<p>Using Unidata's pyUDL module, I wrote a script to download national radar composites and generate a hovmoller diagram for a recent time period 
-   that can be modified by the user. Uses numpy and matplot lib.  A possible alternative for those who don't have <a href="http://scitools.org.uk/iris/docs/v1.2/examples/graphics/hovmoller.html">IRIS</a>.
-</p>
-
-<p>
-<a href="http://nbviewer.ipython.org/github/ahaberlie/hovmoller/blob/master/pyUDL-Hovmoller.ipynb">Radar Hovmoller with pyUDL and numpy</a>
-</p>
-
-<p>Using SPC's tornado dataset, I wrote a script to generate a hovmoller diagram using tornado touchdown locations.  The output is a neat way to visualize
-   tornado occurrence in the United States for every hour of the day.  Uses numpy, matplotlib, and pandas.
-</p>
- 
-<p> 
-<a href="http://nbviewer.ipython.org/github/ahaberlie/hovmoller/blob/master/tor_hovmoller.ipynb">Tornado touchdown Hovmoller with pandas and numpy</a>
-</p>
-
-<p>Noticed that by default, pixels of low or noise values in radar images (and other sparse datasets) displayed over top of images or lines on basemap.
-   I created this example to show an application of setting low values to none.. looks better than just having the lowest colormap value overlayed
-</p>
- 
-<p> 
-<a href="http://nbviewer.ipython.org/github/ahaberlie/visualization_examples/blob/master/Transparent_pixels.ipynb">Transparent Pixels with Basemap, Shapefile, pyUDL</a>
-</p>
 
 <p>Updated 1/9/2015</p>
       </section>
