@@ -1,5 +1,5 @@
 #This is a comment
-basename = /html_frames/*.png
+#basename = /html_frames/*.png
 controls = startstop, speed, step, looprock, zoom
 
 controls_style = display:flex;flex-flow:row;
