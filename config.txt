@@ -1,5 +1,5 @@
 #This is a comment
-image_base = https://github.com/ahaberlie/ahaberlie.github.io/tree/master/html_frames/
+image_base = html_frames/
 num_frames = 63
 base_starting_number = 49
 
