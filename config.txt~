@@ -1,0 +1,27 @@
+#This is a comment
+debug=true
+dwell = 500
+auto_refresh = 1
+file_of_filenames = fof.txt
+controls = startstop,step,refresh,overlay
+controls_style = padding:5px;background-color:green;
+controls_tooltip = Start/Stop the animation, Step one frame, Refresh images
+buttons_style=padding:5px;background:linear-gradient(white,blue);vertical-align:middle;margin-left:10px;font-family:arial;font-size:18px;padding:5px;border-radius:10px;
+
+startstop_labels = Animate, Stop Them, 120
+startstop_style=left:10px;background:linear-gradient(blue, white);
+refresh_label=Refresh
+step_style=width:50px;
+
+overlay_labels=Reflectivity, Visible Satellite, Watches
+overlay_transparent_amount = 100, 100, 40
+overlay_labels_style=font-family:arial;color:white;font-size:20px;padding:2px;background-color:green;
+overlay_tooltip = First overlay, Second overlay, Watch overlay
+
+bottom_controls = speed,zoom, toggle
+bottom_controls_style = padding:5px;background-color:pink;
+bottom_controls_tooltip = Decrease or increase animation rate, click to zoom, Click on frame square to remove from animation; click again to add it back
+
+speed_style=width:40px;
+zoom_style=width:120px;
+toggle_size = 20,10,20
