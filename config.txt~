@@ -1,5 +1,8 @@
 #This is a comment
-#basename = /html_frames/*.png
+image_base = https://github.com/ahaberlie/ahaberlie.github.io/tree/master/html_frames/
+num_frames = 63
+base_starting_number = 49
+basename = *.png
 controls = startstop, speed, step, looprock, zoom
 
 controls_style = display:flex;flex-flow:row;
