@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+  <title>My Animation</title>
+  <script type="text/javascript" src="./hanis/hanis_min.js"> </script>
+  
+  <script type="text/javascript">
+  
+  genConfig = function(num_frames) 
+  {
+			
+    configString = "";
+	
+	configString = 'image_base = framez/ \n';
+	configString += 'num_frames = ' + String(num_frames) + '\n';
+	configString += 'base_starting_number = 5250 \n';
+	configString += 'dwell= 100 \n';
+	configString += 'pause = 1000 \n';
+	configString += 'basename = *.png \n';
+	configString += 'background_static=n \n';
+
+	configString += 'controls = startstop, speed, step, looprock, zoom \n';
+
+	configString += 'controls_style = display:flex;flex-flow:row; \n';
+	configString += 'buttons_style = flex:auto;margin:2px;';
+    
+	HAniS.setup(configString,'handiv');
+  }	
+  
+  
+  </script>
+  </head>
+
+  <body style="width:1280px;" onload="genConfig(50)">
+  <div id="handiv" style="width:1280px;background-color:#808080;">
+  </div>
+  <form name="PlayForm">
+  <div align="center">
+  <center>
+	<table>
+	<tr>
+		<p align="center"><input type="button" onclick="document.getElementById('handiv').innerHTML = '';ct = parseInt(document.PlayForm.imageCount.value); genConfig(ct);" value="Set number of frames >>">
+
+	<td align="left">
+		<p align="center"><input type="text" name="imageCount">
+	</table>
+  </form>
+  </body>
+  </html>
