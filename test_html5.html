@@ -34,18 +34,20 @@
   </head>
 
   <body style="width:1280px;" onload="genConfig(50)">
-  <div id="handiv" style="width:1280px;background-color:#808080;">
-  </div>
   <form name="PlayForm">
   <div align="center">
-  <center>
-	<table>
-	<tr>
-		<p align="center"><input type="button" onclick="document.getElementById('handiv').innerHTML = '';ct = parseInt(document.PlayForm.imageCount.value); genConfig(ct);" value="Set number of frames >>">
-
-	<td align="left">
-		<p align="center"><input type="text" name="imageCount">
-	</table>
+	<center>
+		<table>
+			<tr>
+				<p align="center"><input type="button" onclick="document.getElementById('handiv').innerHTML = '';ct = parseInt(document.PlayForm.imageCount.value); genConfig(ct);" value="Set number of frames >>">
+			<td align="left">
+				<p align="center"><input type="text" name="imageCount">
+		</table>
+	</center>
+  </div>
   </form>
+  <div id="handiv" style="width:1280px;background-color:#808080;">
+  </div>
+  
   </body>
   </html>
