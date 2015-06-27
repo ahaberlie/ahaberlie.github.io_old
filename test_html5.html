@@ -10,12 +10,12 @@
   
   genConfig = function(num_frames) 
   {
-			
+	starting = 5485 - num_frames;		
     configString = "";
 	
 	configString = 'image_base = framez/ \n';
 	configString += 'num_frames = ' + String(num_frames) + '\n';
-	configString += 'base_starting_number = 5250 \n';
+	configString += 'base_starting_number =' + String(starting) +  '\n';
 	configString += 'dwell= 100 \n';
 	configString += 'pause = 1000 \n';
 	configString += 'basename = *.png \n';
