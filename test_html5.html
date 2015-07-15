@@ -13,7 +13,8 @@
 	
   genConfig = function(num_frames) 
   {
-  
+	//document.getElementById('awesome').style.display = 'none';
+	//document.getElementById('awesome').src = '';
 	document.getElementById('download').style.display = 'none';
 	document.getElementById('hidediv').style.display = '';
   
@@ -33,9 +34,9 @@
 		delete output;
 	}
 	
-	if (typeof encoder !== 'undefined') {
-		delete encoder;
-	}
+	//if (typeof encoder !== 'undefined') {
+	//	delete encoder;
+	//}
 	
 	if (typeof curCount !== 'undefined') {
 		delete curCount;
@@ -50,22 +51,22 @@
 	}
 
 	starting = 5485 - num_frames;		
-    configString = "";
+    //configString = "";
 	
-	configString = 'image_base = framez/ \n';
-	configString += 'num_frames = ' + String(num_frames) + '\n';
-	configString += 'base_starting_number =' + String(starting) +  '\n';
-	configString += 'dwell= 100 \n';
-	configString += 'pause = 1000 \n';
-	configString += 'basename = *.png \n';
-	configString += 'background_static=n \n';
+	//configString = 'image_base = framez/ \n';
+	//configString += 'num_frames = ' + String(num_frames) + '\n';
+	//configString += 'base_starting_number =' + String(starting) +  '\n';
+	//configString += 'dwell= 100 \n';
+	//configString += 'pause = 1000 \n';
+	//configString += 'basename = *.png \n';
+	//configString += 'background_static=n \n';
 
-	configString += 'controls = startstop, speed, step, looprock, zoom \n';
+	//configString += 'controls = startstop, speed, step, looprock, zoom \n';
 
-	configString += 'controls_style = display:flex;flex-flow:row; \n';
-	configString += 'buttons_style = flex:auto;margin:2px;';
+	//configString += 'controls_style = display:flex;flex-flow:row; \n';
+	//configString += 'buttons_style = flex:auto;margin:2px;';
     
-	HAniS.setup(configString,'handiv');
+	//HAniS.setup(configString,'handiv');
 	curCount = 0;
 	imgList = [];
 	encoder = new Whammy.Video(10);
@@ -75,24 +76,22 @@
 		
 		context = document.getElementById('canvas').getContext("2d");
 		fileName = "framez/" + String(5480 - (num_frames - i)) + ".png";
-		console.log("in loop");
-		
 		
 		imgList[i] = new Image();
 		imgList[i].src = fileName;
-
+		console.log(encoder);
 		imgList[i].onload = function () {
-			console.log(this.src);
 			context.drawImage(this, 0, 0, 1280,720);
-			console.log("about to add frame to encoder");
 			encoder.add(context);
 			curCount = curCount + 1;
-		
-			if (curCount > num_frames - 1) 
+			
+			if (curCount == num_frames - 1) 
 			{
 				console.log("compiling video");
 				output = encoder.compile();
 				url = URL.createObjectURL(output);
+				//document.getElementById('awesome').src = url;
+				//document.getElementById('awesome').style.display = '';
 				document.getElementById('hidediv').style.display = 'none';
 				document.getElementById('download').style.display = '';
 				document.getElementById('download').href = url;
@@ -100,9 +99,6 @@
 		
 		}
 	}
-	
-	
-	console.log("at end of script");
   }	
   
   </script>
@@ -131,6 +127,7 @@
   </div>
   <a style="display:none" id="download" download="timelapse.webm">Download WebM</a>
   <div id='hidediv' style="display:none;">Loading images... this could take a minute or so.</div>
+  <!-- <video id="awesome" width="1280" height="720" controls autoplay loop></video> !-->
   <canvas id="canvas" width="1280" height="720" style="display:none;"></canvas>
   
   </body>
