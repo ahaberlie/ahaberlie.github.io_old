@@ -5,11 +5,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
   <title>West Camera Animation</title>
   <script type="text/javascript" src="./javascripts/hanis_min.js"> </script>
+  <script src="whammy.js"></script> 
   
+
   <script type="text/javascript">
   
+	
   genConfig = function(num_frames) 
   {
+  
+	if (typeof imgList !== 'undefined') {
+		for(i=0;i<imgList.size;i++)
+		{
+			delete imgList[i];
+		}
+		delete imgList;
+	}
+	
+	if (typeof url !== 'undefined') {
+		delete url;
+	}
+	
+	if (typeof output !== 'undefined') {
+		delete output;
+	}
+	
+	if (typeof encoder !== 'undefined') {
+		delete encoder;
+	}
+	
+	if (typeof curCount !== 'undefined') {
+		delete curCount;
+	}
+	
+	if (typeof context !== 'undefined') {
+		delete context;
+	}
+	
+	if (typeof fileName !== 'undefined') {
+		delete fileName;
+	}
+
 	starting = 5485 - num_frames;		
     configString = "";
 	
@@ -27,15 +63,52 @@
 	configString += 'buttons_style = flex:auto;margin:2px;';
     
 	HAniS.setup(configString,'handiv');
+	curCount = 0;
+	imgList = [];
+	encoder = new Whammy.Video(10);
+	
+	for(i=0; i<num_frames; i++)
+	{
+		
+		context = document.getElementById('canvas').getContext("2d");
+		fileName = "framez/" + String(5480 - (num_frames - i)) + ".png";
+		console.log("in loop");
+		
+		
+		imgList[i] = new Image();
+		imgList[i].src = fileName;
+
+		imgList[i].onload = function () {
+			console.log(this.src);
+			context.drawImage(this, 0, 0, 1280,720);
+			console.log("about to add frame to encoder");
+			encoder.add(context);
+			curCount = curCount + 1;
+		
+			if (curCount > num_frames - 1) 
+			{
+				console.log("compiling video");
+				output = encoder.compile();
+				url = URL.createObjectURL(output);
+				document.getElementById('download').style.display = '';
+				document.getElementById('download').href = url;
+			}
+		
+		}
+	}
+	
+	
+	console.log("at end of script");
   }	
-  
   
   </script>
   </head>
 
-  <body style="width:1280px;" onload="genConfig(50)">
+  <body style="width:1280px;" onload="genConfig(15)"> 
+  
+  
   <form name="PlayForm">
-  <div align="center">
+  <div align="center" >
 	<center>
 		<table>
 			<tr>
@@ -52,6 +125,9 @@
   </form>
   <div id="handiv" style="width:1280px;background-color:#808080;">
   </div>
+  <a style="display:none" id="download" download="timelapse.webm">Download WebM</a>
   
+  <canvas id="canvas" width="1280" height="720" style="display:none;"></canvas>
+  <div id='hidediv' style="display:none;"></div>
   </body>
   </html>

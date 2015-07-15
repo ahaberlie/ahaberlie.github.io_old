@@ -76,6 +76,7 @@ var HAniS = new function() {
 
     drwCan = make("canvas");
     drwCan.setAttribute("style","position:absolute;top:0;left:0;z-index:2;");
+
     ctxd = drwCan.getContext("2d");
     ctxd.imageSmoothingEnabled = false;
 
