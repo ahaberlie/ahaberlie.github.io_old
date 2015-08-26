@@ -67,6 +67,15 @@
 
 
 <script src="whammy.js"></script>
+<script type=text/javascript>
+<?php
+ if (isset($_GET['LoadImg'])) {
+  header("Content-Type: image/png");
+  $file = file_get_contents($_GET['LoadImg']);
+  echo base64_encode($file);
+}
+?>
+</script>
 <script>
 
             /* Drag'n drop stuff */
@@ -103,7 +112,7 @@
                     //loop through them and process
                     for(i=0; i<videoLength; i++) {
 						//var reader = new FileReader();
-                        var fileName = "localhost:8080/framez/" + String(5480 - (videoLength - i)) + ".png";
+                        var fileName = "framez/" + String(5480 - (videoLength - i)) + ".png";
 						file = getBase64Image(fileName);
 						console.log(file);
                         if(file.type.match(/image.*/)){
@@ -120,23 +129,20 @@
             }, false);
 
 
-			function getBase64Image(img) {
-				// Create an empty canvas element
-				var canvas = document.createElement("canvas");
-				canvas.width = img.width;
-				canvas.height = img.height;
-
-				// Copy the image contents to the canvas
-				var ctx = canvas.getContext("2d");
-				ctx.drawImage(img, 0, 0);
-
-				// Get the data-URL formatted image
-				// Firefox supports PNG and JPEG. You could check img.src to
-				// guess the original format, but be aware the using "image/jpg"
-				// will re-encode the image.
-				var dataURL = canvas.toDataURL("image/png");
-
-				return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+			function LoadImg(filename) {
+				var xmlhttp;
+				if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else { // code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {     
+						document.getElementById("documentHolder").src = "data:image/png;base64," + xmlhttp.responseText;
+					}
+				};    
+				xmlhttp.open("GET", 'load.php?LoadImg='+filename );
+				xmlhttp.send(null);
 			}
 
 

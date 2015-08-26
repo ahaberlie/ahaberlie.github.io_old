@@ -1,7 +1,7 @@
 <style>
 * {font-family: sans-serif;}
 </style>
-<progress id="progress" value="0" max="60" min="0" style="width: 300px"></progress>
+<progress id="progress" value="0" max="15" min="0" style="width: 300px"></progress>
 <br>
 <canvas id="canvas" width="150" height="150"></canvas>
 <video id="awesome" width="150" height="150" controls autoplay loop></video>
@@ -101,6 +101,7 @@ function clock(time){
 	ctx.beginPath();
 	ctx.lineWidth = 14;
 	ctx.strokeStyle = '#325FA2';
+	ctx.arc(0,0,142,0,Math.PI*2,true);
 	ctx.arc(0,0,142,0,Math.PI*2,true);
 	ctx.stroke();
 	ctx.restore();
