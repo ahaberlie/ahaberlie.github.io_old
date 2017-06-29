@@ -1,0 +1,397 @@
+<!doctype html>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58467112-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>WRF on GAEA for spatialcogvis</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Running WRF on GAEA for spatialcogvis</h1>
+
+      </header>
+      <section>
+	  
+<h3>
+<a id="academic-positions" class="anchor" href="#academic-positions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Purpose</h3>
+
+<p>This page is to facilitate running WRF on NIU's GAEA cluster.  It is intended for users in the Department of Geography who belong to the spatialcogvis group.
+</p>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data</h3>
+
+<p>This example will use NARR data from 00 UTC on 10 July 2011 to 18 UTC on 11 July 2011 to simulate the progression of a severe Mesoscale Convective System. 
+</p>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logging on to GAEA</h3>
+
+<p>Logging on to GAEA requires establishing an ssh connection to gaea.niu.edu.
+</p>
+
+<table>
+   <tbody>
+      <tr>
+         <b>Windows Users:</b>
+      </tr>
+   <tr>
+      <td>1) Download <a href=http://www.putty.org/> PuTTY </a></td>
+   </tr>
+   <tr>
+      <td>2) Open PuTTY and type gaea.niu.edu into the Host Name input field </a></td>
+   </tr>
+   <tr>
+      <td>2) Input username and password (GAEA specific, talk to Alex for more info) </a></td>
+   </tr>
+</tbody>
+</table>
+<p></p>
+<table>
+   <tbody>
+      <tr>
+         <b>Linux Users:</b>
+      </tr>
+
+   <tr>
+      <td>1) Open a terminal </a></td>
+   </tr>
+   <tr>
+      <td>2) Type ssh username@gaea.niu.edu </a></td>
+   </tr>
+   <tr>
+      <td>3) Input username and password (GAEA specific, talk to Alex for more info) </a></td>
+   </tr>
+</tbody>
+</table>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting NARR Data</h3>
+
+<p>Data source is the <a href=http://nomads.ncdc.noaa.gov/> National Centers for Environmental Information</a> 
+</p>
+
+<table>
+   <tbody>
+      <tr>
+         <b>Create Directory for WRF and data using the following UNIX commands:</b>
+      </tr>
+
+   <tr></tr>
+   <tr>
+      <td>1) cd /data1/spatialcogvis </a></td>
+   </tr>
+   <tr>
+      <td>2) mkdir username (this is whatever your username, project, etc., is) </a></td>
+   </tr>
+   <tr>
+      <td>3) cd username </a></td>
+   </tr>
+   <tr>
+      <td>4) mkdir narr </a></td>
+   </tr>
+</tbody>
+</table>
+<p></p>
+
+
+<table>
+
+   <tbody>
+      <tr><b>Download NARR data into the narr folder:</b>
+      </tr>
+   <tr>
+      <td>1) cd narr </a></td>
+   </tr>
+   <tr>
+      <td>2) use wget to download the following files:</td>
+   </tr>
+   <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_0000_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_0300_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_0600_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_0900_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_1200_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_1500_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_1800_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110710/narr­a_221_20110710_2100_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_0000_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_0300_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_0600_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_0900_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_1200_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_1500_000.grb </a></td>
+   </tr>
+      <tr>
+      <td>wget http://nomads.ncdc.noaa.gov/data/narr/201107/20110711/narr­a_221_20110711_1800_000.grb </a></td>
+   </tr>
+</tbody>
+</table>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining Simulation Parameters</h3>
+
+<p>Two files are required to define things like the spatial domain of the simulation, where output data are stored, and where the processes can find pertinent data and configuration files.
+</p>
+
+<p>Place the follwing files in your WRF directory (e.g., /data1/spatialcogvis/username).  Feel free to reduce the size of the domain if you wish to run a faster simulation.
+</p>
+
+<table>
+   <tbody>
+      <tr>
+         <td> 1) <a href=namelist.input>namelist.input:</a> For more info on variables in namelist.input, 
+                 see <a href=http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Basics/WRF/namelist.input.htm>this ucar page</a>
+                 or Dr. Victor Gensini's document <a href=http://weather.cod.edu/~vgensini/wrf/WRFDataAcquisitionandSimulation.pdf>here</a></td>
+      </tr>
+      
+       <tr>
+         <td> 2) <a href=namelist.input>namelist.wps:</a> For more info on variables in namelist.wps, 
+                 see <a href=http://www2.mmm.ucar.edu/wrf/OnLineTutorial/Basics/GEOGRID/geogrid_namelist.htm>this ucar page</a>
+                 or Dr. Victor Gensini's document <a href=http://weather.cod.edu/~vgensini/wrf/WRFDataAcquisitionandSimulation.pdf>here</a></td>
+      </tr>
+ 
+    </tr>
+   </tbody>
+</table>
+
+<p>These files define several parameters, such as the range of the simulation, the spatial domain, and the spatial and temporal resolution.  
+</p>
+
+<p>
+For this case, the domain will encompass the following shaded areas with 4x4 km spatial and 3 hourly temporal output:
+</p>
+
+<img src="domain.jpg" alt="Domain" style="width:500px;height:500px;">
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparing for the Simulation</h3>
+
+<table>
+   <tbody>
+      <tr>
+         <b>Some files need to be "linked" or moved using the following UNIX commands:</b>
+      </tr>
+
+   <tr></tr>
+   <tr>
+      <td>1) cd /data1/spatialcogvis/username (change directory to the folder in which you wish to run WRF) </a></td>
+   </tr>
+   <tr>
+      <td>2) ln -sf /data1/local/stow/WPS-3.8.1/Variable_Tables/Vtable.NARR Vtable (link NARR table and name it Vtable)  </a></td>
+   </tr>
+   <tr>
+      <td>3) mkdir shared_tables </a></td>
+   </tr>
+   <tr>
+      <td>4) cp /data1/spatialcogvis/WRF/shared_tables/* /data1/spatialcogvis/username/shared_tables (copy geogrid and metgrid tables to your directory) </a></td>
+   </tr>
+   <tr>
+      <td>5) mkdir my_output (create a directory for pre-processing files)</td>
+   </tr>
+   <tr>
+      <td>6) ln -sf /data1/local/stow/WPS-3.8.1/bin/link_grib.csh . (link a utility file to your directory that is used during the pre-processing steps)</td>
+   </tr>
+   <tr>
+      <td>7) ln -sf /data1/local/stow/WRF-3.8.1/run/* . (link files used to run WRF simulations.  <b>You will need to replace your own namelist.input since this will overwrite it.</b>)
+</tbody>
+</table>
+<p></p>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Pre-Processing Tasks</h3>
+
+<table>
+   <tbody>
+      <tr>
+         <b>Before WRF can be run, four processes need to be executed:</b>
+      </tr>
+
+   <tr></tr>
+   <tr>
+      <table>
+      <tbody>
+      <tr>
+      <td><b>GEOGRID</b></td>
+      </tr>
+      <tr>
+      <td>1) Copy the following job file to your home directory (cd ~): <a href=geogrid.job>geogrid.job</a>
+      </tr>
+      <tr>
+      <td>2) Submit the job to the cluster queue using the command: qsub geogrid.job</td>
+      </tr>
+      <tr><td>When this is complete, you should see a file named "geo_em.d01.nc" or similar in your my_output folder.</td>
+      </tr>
+      </tbody>
+      </table>
+   </tr>
+   <p></p>
+   <tr>
+      <table>
+      <tbody>
+      <tr>
+      <td><b>UNGRIB</b> (**for some reason, ungrib.job does not work.  Skip steps 2a and 3a for now)</td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>1) Link narr grib files to WRF directory using command: link_grib.csh /data1/spatialcogvis/username/narr/*.grb
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>If this succeeded, you should see files like "GRIBFILE.AAA, GRIBFILE.AAB, etc." in your WRF directory.
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>2a) Copy the following job file to your home directory (cd ~): <a href=ungrib.job>ungrib.job</a>** </td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>3a) Submit the job to the cluster queue using the command: qsub ungrib.job**</td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>2b) Manual UNGRIB is performed by running the following commands in your WRF directory:</td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>module add wrf/wrf-3.8.1</td>
+      </tr>
+      <tr>
+         <td>ungrib.exe</td>
+      </tr>         
+      <tr></tr>
+      <tr></tr>
+      <tr>
+         <td>It is possible that this will fail if all of the nodes are in use.  Working on getting the ungrib.job to function correctly...</td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>When this is complete, you should see files like "FILE:2011-07-11_18, FILE:2011-07-11_15, etc." in your WRF directory.</td>
+      </tr>
+      </tbody>
+      </table>
+   </tr>
+   <tr>
+   <p></p>
+   <table>
+      <tbody>
+      <tr>
+      <td><b>METGRID</b></td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>1) Copy the following job file to your home directory (cd ~): <a href=metgrid.job>metgrid.job</a></td>
+      </tr>
+      <tr>
+         <td>2) Submit the job to the cluster queue using the command: qsub ungrib.job </td>
+      </tr>
+      <tr>
+         <td>When this is complete, you should see files like "met_em.d01.2011-07-11_18:00:00.nc" in your my_output directory.</td>
+      </tr>
+      </tbody>
+   </table>
+   <p></p>
+   <table>
+      <tbody>
+      <tr>
+      <td><b>REAL</b></td>
+      </tr>
+      <tr></tr>
+      <tr>
+         <td>1) Link the met_em files to your WRF directory using this command: ln -sf /data1/spatialcogvis/username/my_output/met_em.d* .
+      <tr>
+         <td>2) Copy the following job file to your home directory (cd ~): <a href=real.job>real.job</a></td>
+      </tr>
+      <tr>
+         <td>3) Submit the job to the cluster queue using the command: qsub real.job </td>
+      </tr>
+      <tr>
+         <td>When this is complete, you should see two files "wrfbdy_d01" and "wrfinput_d01" in your WRF directory.</td>
+      </tr>
+      </tbody>
+   </table>
+   </tr>
+</tbody>
+</table>
+<p></p>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running WRF</h3>
+
+<table>
+   <tbody>
+      <tr>
+         <b>At this point, it is pretty straightforward!</b>
+      </tr>
+      <tr>
+         <td>1) Copy the following job file to your home directory (cd ~): <a href=run_wrf.job>run_wrf.job</a></td>
+      </tr>
+      <tr>
+         <td>The provided settings ask for an allocation of 5 nodes with 8 processors per node, for a total of 40 processors.</td>
+      </tr>
+      <tr>
+         <td>You can check to see if your process is still running by using this command: qstat</td>
+      </tr>
+      <tr>
+         <td>As this process is running, you will see large netCDF files like "wrfout_d01_2011-07-10_18:00:00.nc" populating your WRF directory. 
+   </tbody>
+<table>
+
+<h3> 
+<a id="education" class="anchor" href="#education" aria-hidden="true"><span class="octicon octicon-link"></span></a>Post-Processing (TBD)</h3>
+
+<p>Updated 6/29/2017</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> </small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
